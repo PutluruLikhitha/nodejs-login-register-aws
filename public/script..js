@@ -1,17 +1,18 @@
+```javascript
 const API_URL = "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com/dev1";
 
+// ================= REGISTER =================
 
-// REGISTER
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
-
-    registerForm.addEventListener("submit", async function(event) {
+    registerForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
+        const message = document.getElementById("message");
 
         try {
 
@@ -32,12 +33,17 @@ if (registerForm) {
 
             const data = await response.json();
 
-            document.getElementById("message").innerText = data.message;
+            if (response.ok) {
+                message.innerText = data.message || "Registered successfully";
+            } else {
+                message.innerText = data.message || "Registration failed";
+            }
 
         } catch (error) {
 
-            document.getElementById("message").innerText =
-                "Registration failed";
+            console.error("Registration Error:", error);
+
+            message.innerText = "Registration failed";
 
         }
 
@@ -45,17 +51,18 @@ if (registerForm) {
 }
 
 
-// LOGIN
+// ================= LOGIN =================
+
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
-
-    loginForm.addEventListener("submit", async function(event) {
+    loginForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
 
         const email = document.getElementById("loginEmail").value;
         const password = document.getElementById("loginPassword").value;
+        const message = document.getElementById("loginMessage");
 
         try {
 
@@ -76,15 +83,20 @@ if (loginForm) {
 
             const data = await response.json();
 
-            document.getElementById("loginMessage").innerText =
-                data.message;
+            if (response.ok) {
+                message.innerText = data.message || "Login successful";
+            } else {
+                message.innerText = data.message || "Login failed";
+            }
 
         } catch (error) {
 
-            document.getElementById("loginMessage").innerText =
-                "Login failed";
+            console.error("Login Error:", error);
+
+            message.innerText = "Login failed";
 
         }
 
     });
 }
+```
