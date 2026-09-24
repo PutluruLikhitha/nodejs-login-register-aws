@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Success</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 id="successMessage"></h1>
+
+        <a href="login.html">Go to Login</a>
+
+    </div>
+
+    <script>
+        const params =
+            new URLSearchParams(window.location.search);
+
+        const message =
+            params.get("message");
+
+        document.getElementById("successMessage").innerText =
+            message || "Success";
+    </script>
+
+</body>
+</html>
