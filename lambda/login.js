@@ -1,3 +1,4 @@
+```javascript
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 
 const {
@@ -31,39 +32,52 @@ exports.handler = async (event) => {
             new GetCommand(params)
         );
 
+        // User not found
         if (!result.Item) {
 
             return {
                 statusCode: 401,
+
                 headers: {
-                    "Access-Control-Allow-Origin": "*"
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "Content-Type",
+                    "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     message: "User not found"
                 })
             };
-
         }
 
+        // Password does not match
         if (result.Item.password !== password) {
 
             return {
                 statusCode: 401,
+
                 headers: {
-                    "Access-Control-Allow-Origin": "*"
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "Content-Type",
+                    "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     message: "Invalid password"
                 })
             };
-
         }
 
+        // Login successful
         return {
             statusCode: 200,
+
             headers: {
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Content-Type": "application/json"
             },
+
             body: JSON.stringify({
                 message: "Login successful"
             })
@@ -71,17 +85,21 @@ exports.handler = async (event) => {
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Login Error:", error);
 
         return {
             statusCode: 500,
+
             headers: {
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Content-Type": "application/json"
             },
+
             body: JSON.stringify({
                 message: "Login failed"
             })
         };
-
     }
 };
+```
