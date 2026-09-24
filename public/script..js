@@ -3,7 +3,9 @@ const API_URL =
     "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com/dev1";
 
 
-// ================= REGISTER =================
+// ==================================================
+// REGISTER
+// ==================================================
 
 const registerForm = document.getElementById("registerForm");
 
@@ -14,13 +16,15 @@ if (registerForm) {
         event.preventDefault();
 
         const email =
-            document.getElementById("email").value;
+            document.getElementById("email").value.trim();
 
         const password =
             document.getElementById("password").value;
 
         const message =
             document.getElementById("message");
+
+        message.innerText = "Registering...";
 
         try {
 
@@ -57,10 +61,7 @@ if (registerForm) {
 
         } catch (error) {
 
-            console.error(
-                "Registration Error:",
-                error
-            );
+            console.error("Registration Error:", error);
 
             message.innerText =
                 "Registration failed";
@@ -70,7 +71,9 @@ if (registerForm) {
 }
 
 
-// ================= LOGIN =================
+// ==================================================
+// LOGIN
+// ==================================================
 
 const loginForm = document.getElementById("loginForm");
 
@@ -81,13 +84,15 @@ if (loginForm) {
         event.preventDefault();
 
         const email =
-            document.getElementById("loginEmail").value;
+            document.getElementById("loginEmail").value.trim();
 
         const password =
             document.getElementById("loginPassword").value;
 
         const message =
             document.getElementById("loginMessage");
+
+        message.innerText = "Logging in...";
 
         try {
 
@@ -124,10 +129,7 @@ if (loginForm) {
 
         } catch (error) {
 
-            console.error(
-                "Login Error:",
-                error
-            );
+            console.error("Login Error:", error);
 
             message.innerText =
                 "Login failed";
@@ -135,3 +137,4 @@ if (loginForm) {
 
     });
 }
+
