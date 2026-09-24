@@ -1,5 +1,5 @@
 
-const API_URL = "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com/dev1";
+const API_URL = "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com";
 
 // ================= REGISTER =================
 
