@@ -1,4 +1,4 @@
-```javascript
+
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const {
     DynamoDBDocumentClient,
@@ -63,4 +63,4 @@ exports.handler = async (event) => {
         };
     }
 };
-```
+
