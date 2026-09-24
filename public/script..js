@@ -44,11 +44,10 @@ if (registerForm) {
 
             console.log("Register response:", data);
 
-            // Registration successful
             if (response.ok) {
 
-                window.location.href =
-                    "success.html?message=Registered%20successfully";
+                message.innerText =
+                    data.message || "Registered successfully";
 
             } else {
 
@@ -112,11 +111,10 @@ if (loginForm) {
 
             console.log("Login response:", data);
 
-            // Login successful
             if (response.ok) {
 
-                window.location.href =
-                    "success.html?message=Login%20successful";
+                message.innerText =
+                    data.message || "Login successful";
 
             } else {
 
@@ -137,4 +135,3 @@ if (loginForm) {
 
     });
 }
-
