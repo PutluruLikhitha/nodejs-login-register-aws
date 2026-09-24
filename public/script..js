@@ -1,11 +1,12 @@
-
-const API_URL = "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com";
+```javascript
+const API_URL = "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com/dev1";
 
 // ================= REGISTER =================
 
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
+
     registerForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
@@ -33,6 +34,8 @@ if (registerForm) {
 
             const data = await response.json();
 
+            console.log("Register response:", data);
+
             if (response.ok) {
                 message.innerText = data.message || "Registered successfully";
             } else {
@@ -44,7 +47,6 @@ if (registerForm) {
             console.error("Registration Error:", error);
 
             message.innerText = "Registration failed";
-
         }
 
     });
@@ -56,6 +58,7 @@ if (registerForm) {
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
+
     loginForm.addEventListener("submit", async function (event) {
 
         event.preventDefault();
@@ -83,6 +86,8 @@ if (loginForm) {
 
             const data = await response.json();
 
+            console.log("Login response:", data);
+
             if (response.ok) {
                 message.innerText = data.message || "Login successful";
             } else {
@@ -94,9 +99,8 @@ if (loginForm) {
             console.error("Login Error:", error);
 
             message.innerText = "Login failed";
-
         }
 
     });
 }
-
+```
