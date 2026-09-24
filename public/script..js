@@ -1,5 +1,7 @@
+```javascript
+const API_URL =
+    "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com/dev1";
 
-const API_URL = "https://46nfpdrf8e.execute-api.ap-south-1.amazonaws.com/dev1";
 
 // ================= REGISTER =================
 
@@ -11,42 +13,58 @@ if (registerForm) {
 
         event.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const message = document.getElementById("message");
+        const email =
+            document.getElementById("email").value;
+
+        const password =
+            document.getElementById("password").value;
+
+        const message =
+            document.getElementById("message");
 
         try {
 
-            const response = await fetch(`${API_URL}/register`, {
+            const response = await fetch(
+                `${API_URL}/register`,
+                {
+                    method: "POST",
 
-                method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-
-            });
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
 
             const data = await response.json();
 
             console.log("Register response:", data);
 
+            // Registration successful
             if (response.ok) {
-                message.innerText = data.message || "Registered successfully";
+
+                window.location.href =
+                    "success.html?message=Registered%20successfully";
+
             } else {
-                message.innerText = data.message || "Registration failed";
+
+                message.innerText =
+                    data.message || "Registration failed";
             }
 
         } catch (error) {
 
-            console.error("Registration Error:", error);
+            console.error(
+                "Registration Error:",
+                error
+            );
 
-            message.innerText = "Registration failed";
+            message.innerText =
+                "Registration failed";
         }
 
     });
@@ -63,44 +81,60 @@ if (loginForm) {
 
         event.preventDefault();
 
-        const email = document.getElementById("loginEmail").value;
-        const password = document.getElementById("loginPassword").value;
-        const message = document.getElementById("loginMessage");
+        const email =
+            document.getElementById("loginEmail").value;
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+        const message =
+            document.getElementById("loginMessage");
 
         try {
 
-            const response = await fetch(`${API_URL}/login`, {
+            const response = await fetch(
+                `${API_URL}/login`,
+                {
+                    method: "POST",
 
-                method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-
-            });
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                }
+            );
 
             const data = await response.json();
 
             console.log("Login response:", data);
 
+            // Login successful
             if (response.ok) {
-                message.innerText = data.message || "Login successful";
+
+                window.location.href =
+                    "success.html?message=Login%20successful";
+
             } else {
-                message.innerText = data.message || "Login failed";
+
+                message.innerText =
+                    data.message || "Login failed";
             }
 
         } catch (error) {
 
-            console.error("Login Error:", error);
+            console.error(
+                "Login Error:",
+                error
+            );
 
-            message.innerText = "Login failed";
+            message.innerText =
+                "Login failed";
         }
 
     });
 }
-
+```
